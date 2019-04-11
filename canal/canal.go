@@ -203,16 +203,16 @@ func (c *Canal) run() error {
 
 	c.master.UpdateTimestamp(uint32(time.Now().Unix()))
 
-	if !c.dumped {
-		// c.dumped = true
-		err := c.tryDump()
-		close(c.dumpDoneCh)
+	// if !c.dumped {
+	// 	// c.dumped = true
+	// 	err := c.tryDump()
+	// 	close(c.dumpDoneCh)
 
-		if err != nil {
-			log.Errorf("canal dump mysql err: %v", err)
-			return errors.Trace(err)
-		}
-	}
+	// 	if err != nil {
+	// 		log.Errorf("canal dump mysql err: %v", err)
+	// 		return errors.Trace(err)
+	// 	}
+	// }
 
 	if err := c.runSyncBinlog(); err != nil {
 		log.Errorf("canal start sync binlog err: %v", err)
