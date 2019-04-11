@@ -71,9 +71,9 @@ func NewCanal(cfg *Config) (*Canal, error) {
 
 	var err error
 
-	if err = c.prepareDumper(); err != nil {
-		return nil, errors.Trace(err)
-	}
+	// if err = c.prepareDumper(); err != nil {
+	// 	return nil, errors.Trace(err)
+	// }
 
 	if err = c.prepareSyncer(); err != nil {
 		return nil, errors.Trace(err)
@@ -204,8 +204,7 @@ func (c *Canal) run() error {
 	c.master.UpdateTimestamp(uint32(time.Now().Unix()))
 
 	if !c.dumped {
-		c.dumped = true
-
+		// c.dumped = true
 		err := c.tryDump()
 		close(c.dumpDoneCh)
 
@@ -223,6 +222,7 @@ func (c *Canal) run() error {
 	return nil
 }
 
+// Close --
 func (c *Canal) Close() {
 	log.Infof("closing canal")
 
