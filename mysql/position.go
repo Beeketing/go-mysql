@@ -4,12 +4,13 @@ import (
 	"fmt"
 )
 
-// For binlog filename + position based replication
+// Position --For binlog filename + position based replication
 type Position struct {
-	Name string
-	Pos  uint32
+	Name string `json:"name,omitempty"`
+	Pos  uint32 `json:"pos,omitempty"`
 }
 
+// Compare --
 func (p Position) Compare(o Position) int {
 	// First compare binlog name
 	if p.Name > o.Name {
